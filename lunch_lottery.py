@@ -19,7 +19,7 @@ for i in range(len(probs)):
     temp=temp+float(probs[i])
     portion.append(temp)
 portion=[0]+portion
-print(portion)
+#print(portion)
 #if ran_num<float(probs[0]):
 #    result=places_votes[0][0]
 #elif ran_num<(float(probs[0])+float(probs[1])):
@@ -30,9 +30,43 @@ print(portion)
 #    result=places_votes[3][0]
 #else:
 #    result=places_votes[4][0]
+def less_than_50_result():
+	print('*'*40)
+	print('Based on the {} votes we get this time'.format(total_votes))
+	print('*'*40)
+	for i in range(len(probs)):
+	    print('Probability for going to {} is {}'.format(places_votes[i][0],probs[i]))
+	#print(probs)
+	print('*'*40)
+	print('Ultimate solution to Lunch places')
+	print('*'*40)
+	print(r"Let's have lunch in {} this time!!!".format(result))
+def more_than_50_result():
+	print('*'*40)
+	print('Based on the {} votes we get this time'.format(total_votes))
+	print('*'*40)
+	for i in range(len(probs)):
+	    print('Probability for going to {} is {}'.format(places_votes[i][0],probs[i]))
+	#print(probs)
+	print('*'*40)
+	print("Since the vote for {} is more than 50%, let's follow majority then".format(result))
+	print('*'*40)
+	print('*'*40)
+	print('*Ultimate solution to Lunch places*')
+	print('*'*40)
+	print(r"Let's have lunch in {} this time!!!".format(result))
+#print(probs)
+#print(range(len(portion)))
+#print(probs[2])
 for i in range(len(portion)):
-    if ran_num>portion[i] and ran_num<portion[i+1]:
+    if probs[i]>0.5:
         result=places_votes[i][0]
+        more_than_50_result()
+        break
+    elif ran_num>portion[i] and ran_num<portion[i+1]:
+       result=places_votes[i][0]
+       less_than_50_result()
+       break
     else:
         continue
 #if ran_num<portion[0]:
@@ -47,13 +81,4 @@ for i in range(len(portion)):
 #    result=places_votes[4][0]
 #print(total_votes)
 #print(ran_num)
-print('*'*40)
-print('Based on the {} votes we get this time'.format(total_votes))
-print('*'*40)
-for i in range(len(probs)):
-    print('Probability for going to {} is {}'.format(places_votes[i][0],probs[i]))
-#print(probs)
-print('*'*40)
-print('Ultimate solution to Lunch places')
-print('*'*40)
-print(r"Let's have lunch in {} this time!!!".format(result))
+
